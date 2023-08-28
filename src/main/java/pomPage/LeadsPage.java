@@ -16,13 +16,17 @@ public class LeadsPage {
 	private String commonPath="//table[@classs='lvt small']/descendant::tr";
 	private String leadNamePath=commonPath+"[%d]/td[3]";
 	private String leadCheckBox=commonPath+"[%d]/td[1]/input";
+	@FindBy(xpath="//input[@value='Delete']")
+	private WebElement deleteButton;
 	@FindBy (xpath="table[@class='lvt small']descendant::tr")
-	private List<WebElement> leadList;
+		private List<WebElement> leadList;
 		@FindBy(xpath="//img[@alt='Create Lead...']")
 		private WebElement plusButton;
 		
 		@FindBy(xpath="//input[@value='Delete']")
 		private WebElement DeleteButton;
+@FindBy(xpath="//table[@class='lvt small']/descendant::tr[3]td[3]/a")	
+private List<WebElement> leadNames;
 		//Initialization
 		public LeadsPage(WebDriver driver) {
 			PageFactory.initElements(driver,this);
@@ -40,9 +44,17 @@ public class LeadsPage {
 					web.convertStringToDynamicXpath(leadCheckBox,(i+1)).click();
 					break;
 				}
+			
 			}
+		}
+		public void clickDelete()
+		{
+			deleteButton.click();
+		}
+
+		public List<WebElement> getLeadNamesList() {
 			
-			
+			return leadNames;
 		}
 
 }

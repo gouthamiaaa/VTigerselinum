@@ -35,15 +35,16 @@ public class CreateNewEvent {
 		{
 			subjectTF.sendKeys(subject);
 		}
-		public void clickOnstarDate()
+		public void clickOnstartDate()
 		{
 			startDateCalenderImage.click();	
 		}
-		public void clickOnStarData(WebDriverUtility web,String reqDataOfYear,JavaUtility jutil)
-		{
-			String[] s=reqDataOfYear.split("-");
+		public void chooseRequiredDate(WebDriverUtility web, String reqDateOfYear, JavaUtility jutil) {
+			String[] s=reqDateOfYear.split("-");
 			int reqYear=Integer.parseInt(s[0]);
-			String reqData =s[2];
+			int reqMonth=Integer.parseInt(s[1]);
+			String reqDate=s[2];
+			
 			String actMonthYear=web.convertStringToDynamicXpath(commonPath, "@class='title'").getText();
 			String[] str=actMonthYear.split(", ");
 			int actYear=Integer.parseInt(str[1]);
@@ -57,21 +58,21 @@ public class CreateNewEvent {
 			int actMonth=jutil.convertMonthToInt(str[0]);
 			while(actMonth<reqYear)
 			{
-				web.convertStringToDynamicXpath(reqData, "text()='>'").click();
+				web.convertStringToDynamicXpath(reqDate, "text()='>'").click();
 				actMonthYear=web.convertStringToDynamicXpath(commonPath, "@class='title'").getText();
 				str=actMonthYear.split(", ");
 				actMonth=jutil.convertMonthToInt(str[0]);
 			}
 			while(actMonth<reqYear)
 			{
-				web.convertStringToDynamicXpath(reqData, "text()='<'").click();
+				web.convertStringToDynamicXpath(reqDate, "text()='<'").click();
 				actMonthYear=web.convertStringToDynamicXpath(commonPath, "@class='title'").getText();
 				str=actMonthYear.split(", ");
 				actMonth=jutil.convertMonthToInt(str[0]);
 			}
-			web.convertStringToDynamicXpath(reqData, "text()='"+reqData+"'").click();
+			web.convertStringToDynamicXpath(reqDate, "text()='"+reqDate+"'").click();
 		}
-		public void clickOnDueData()
+		public void clickOnDueDate()
 		{
 			dueDateCalenderImage.click();
 		}
