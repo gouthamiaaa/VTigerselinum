@@ -13,7 +13,7 @@ public class CreateDuplicateLeadTest extends BaseClass {
 	@Test
 	
 	public void createLeadTest() {
-		  
+		  //update 2
 		SoftAssert soft=new SoftAssert();
 		home.clickLeads();
 		soft.assertTrue(driver.getTitle().contains("Leads"));
